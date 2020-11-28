@@ -6,7 +6,6 @@ import com.projeto.changebookbooks.domain.Book;
 import com.projeto.changebookbooks.integration.user.response.User;
 import com.projeto.changebookbooks.repository.BookRepository;
 import lombok.val;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

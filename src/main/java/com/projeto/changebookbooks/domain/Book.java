@@ -3,8 +3,11 @@ package com.projeto.changebookbooks.domain;
 import com.projeto.changebookbooks.config.Messages;
 import com.projeto.changebookbooks.integration.user.response.User;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -13,12 +16,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Document
 public class Book {
 
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
+
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     @NotBlank(message = Messages.NAME_IS_REQUIRED)
@@ -48,7 +52,6 @@ public class Book {
     @NotNull(message = Messages.IMAGE_IS_REQUIRED)
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @DBRef(db = "user")
     private User user;
 }

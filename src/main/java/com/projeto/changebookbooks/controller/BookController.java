@@ -3,6 +3,7 @@ package com.projeto.changebookbooks.controller;
 import com.projeto.changebookbooks.domain.Book;
 import com.projeto.changebookbooks.integration.user.client.UserClient;
 import com.projeto.changebookbooks.service.BookService;
+import com.projeto.changebookbooks.service.SequenceServiceGenerator;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,13 +17,15 @@ import javax.validation.Valid;
 public class BookController {
 
     private BookService bookService;
+    private SequenceServiceGenerator sequenceServiceGenerator;
 
     @Autowired
     private UserClient userClient;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, SequenceServiceGenerator sequenceServiceGenerator) {
         this.bookService = bookService;
+        this.sequenceServiceGenerator= sequenceServiceGenerator;
     }
 
     @PostMapping
@@ -31,6 +34,7 @@ public class BookController {
             @RequestBody @Valid Book book,
             @RequestHeader String Authorization){
         val user = userClient.getUserByToken(Authorization);
+        book.setId(sequenceServiceGenerator.generateSequence(Book.SEQUENCE_NAME));
         bookService.createBook(user, book);
     }
 

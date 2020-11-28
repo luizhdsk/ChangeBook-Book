@@ -1,26 +1,20 @@
 package com.projeto.changebookbooks.integration.user.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.projeto.changebookbooks.config.Messages;
-import com.projeto.changebookbooks.domain.Book;
 import lombok.*;
-import org.dom4j.tree.AbstractEntity;
-import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "user")
+@Document
+@TypeAlias("user")
 public class User {
 
     @JsonProperty("user_name")
@@ -31,7 +25,7 @@ public class User {
 
     private String city;
 
-    @Column(unique = true)
+    @Indexed(unique = true)
     private String email;
 
     private String phone;
