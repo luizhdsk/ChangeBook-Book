@@ -1,0 +1,79 @@
+[
+  {
+    "500": {
+      "code": "500",
+      "httpStatus": 500,
+      "description": "Internal Server Error, please contact the support or try it again later."
+    }
+  },
+  {
+    "412.1": {
+      "code": "412.1",
+      "httpStatus": 412,
+      "description": "name is required."
+    }
+  },
+  {
+    "412.2": {
+      "code": "412.2",
+      "httpStatus": 412,
+      "description": "authorName is required."
+    }
+  },
+  {
+    "412.3": {
+      "code": "412.3",
+      "httpStatus": 412,
+      "description": "editorName is required."
+    }
+  },
+  {
+    "412.4": {
+      "code": "412.4",
+      "httpStatus": 412,
+      "description": "description is required."
+    }
+  },
+  {
+    "412.5": {
+      "code": "412.5",
+      "httpStatus": 412,
+      "description": "isForTrade is required."
+    }
+  },
+  {
+    "412.6": {
+      "code": "412.6",
+      "httpStatus": 412,
+      "description": "tradeDescription is required."
+    }
+  },
+  {
+    "412.7": {
+      "code": "412.7",
+      "httpStatus": 412,
+      "description": "isForSell is invalid."
+    }
+  },
+  {
+    "412.8": {
+      "code": "412.8",
+      "httpStatus": 412,
+      "description": "category is required."
+    }
+  },
+  {
+    "412.9": {
+      "code": "412.9",
+      "httpStatus": 412,
+      "description": "image is required."
+    }
+  },
+  {
+    "422.1": {
+      "code": "422.1",
+      "httpStatus": 422,
+      "description": "Book not found."
+    }
+  }
+]
