@@ -32,15 +32,15 @@ public class BookService {
     }
 
     public Book getBookById(String bookId, User user) {
-        val book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
-        if (!book.getUser().getEmail().equals(user.getEmail()))
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
+        if (!book.getUser().getCpf().equals(user.getCpf()))
             throw new BookException(Messages.BOOK_NOT_FOUND);
         return book;
     }
 
     public void deleteBookById(String bookId, User user) {
-        val book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
-        if (!book.getUser().getEmail().equals(user.getEmail()))
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
+        if (!book.getUser().getCpf().equals(user.getCpf()))
             throw new BookException(Messages.BOOK_NOT_FOUND);
         bookRepository.delete(book);
     }
