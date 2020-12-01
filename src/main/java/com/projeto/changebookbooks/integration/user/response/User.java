@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document
 @TypeAlias("user")
+@ToString
 public class User {
 
     @JsonProperty("user_name")

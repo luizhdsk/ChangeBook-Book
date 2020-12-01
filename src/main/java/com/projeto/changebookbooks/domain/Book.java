@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Document
+@ToString
 public class Book {
 
     @Transient
