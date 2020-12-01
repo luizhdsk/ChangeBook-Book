@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.projeto.changebookbooks --spring.profiles.active=heroku
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.projeto.changebook-books --spring.profiles.active=heroku
