@@ -56,7 +56,7 @@ public class BookController {
         User user = userClient.getUserByToken(Authorization);
         logger.info(user.toString());
         logger.info(bookService.getBookById(bookId,user).toString());
-        return ResponseEntity.ok().body("bookService.getBookById(bookId,user)");
+        return ResponseEntity.ok().body(bookService.getBookById(bookId,user));
     }
 
     @DeleteMapping("/{bookId}")
