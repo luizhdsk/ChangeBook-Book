@@ -39,17 +39,7 @@ public class BookService {
     }
 
     public Book getBookById(String bookId, User user) {
-        logger.info(bookRepository.findById(bookId).toString());
-        Book book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
-        logger.info(book.toString());
-        logger.info(book.getUser().toString());
-        logger.info(user.getCpf());
-        logger.info(String.valueOf(book.getUser().getCpf().equals(user.getCpf()) ? true : false));
-        if (!book.getUser().getCpf().equals(user.getCpf())) {
-            logger.info(book.toString());
-            throw new BookException(Messages.BOOK_NOT_FOUND);
-        }
-        return book;
+        return bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
     }
 
     public void deleteBookById(String bookId, User user) {
