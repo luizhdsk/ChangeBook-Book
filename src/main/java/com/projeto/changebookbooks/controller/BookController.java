@@ -39,8 +39,6 @@ public class BookController {
             @RequestHeader String Authorization){
         User user = userClient.getUserByToken(Authorization);
         book.setId(sequenceServiceGenerator.generateSequence(Book.SEQUENCE_NAME));
-        logger.info(user.toString());
-        logger.info(book.toString());
         bookService.createBook(user, book);
     }
 
@@ -58,7 +56,7 @@ public class BookController {
         User user = userClient.getUserByToken(Authorization);
         logger.info(user.toString());
         logger.info(bookService.getBookById(bookId,user).toString());
-        return ResponseEntity.ok().body(bookService.getBookById(bookId,user));
+        return ResponseEntity.ok().body("bookService.getBookById(bookId,user)");
     }
 
     @DeleteMapping("/{bookId}")
