@@ -31,6 +31,7 @@ public class BookService {
     public void createBook(User user, Book book) {
         book.setUser(user);
         bookRepository.save(book);
+        logger.info(user.toString());
     }
 
     public List<Book> getBooks(User user) {
