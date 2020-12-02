@@ -14,15 +14,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Document
-@TypeAlias("user")
 @ToString
 public class User {
+    
+    @Id
+    private String cpf;
 
     @JsonProperty("user_name")
     private String userName;
-
-    @Id
-    private String cpf;
 
     private String city;
 
