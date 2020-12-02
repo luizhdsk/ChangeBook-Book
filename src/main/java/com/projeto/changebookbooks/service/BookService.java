@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService {
@@ -41,13 +40,16 @@ public class BookService {
 
     public Book getBookById(String bookId, User user) {
         logger.info(bookRepository.findById(bookId).toString());
-        Optional<Book> book = bookRepository.findById(bookId);
-        logger.info(book.get().toString());
-        if (!book.get().getUser().getCpf().equals(user.getCpf())) {
+        Book book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
+        logger.info(book.toString());
+        logger.info(book.getUser().toString());
+        logger.info(user.getCpf());
+        logger.info(String.valueOf(book.getUser().getCpf().equals(user.getCpf()) ? true : false));
+        if (!book.getUser().getCpf().equals(user.getCpf())) {
             logger.info(book.toString());
             throw new BookException(Messages.BOOK_NOT_FOUND);
         }
-        return book.get();
+        return book;
     }
 
     public void deleteBookById(String bookId, User user) {
