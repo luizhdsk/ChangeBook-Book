@@ -39,9 +39,11 @@ public class BookService {
     }
 
     public Book getBookById(String bookId, User user) {
+        logger.info(bookRepository.findById(bookId).toString());
         Book book = bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
         logger.info(book.toString());
         if (!book.getUser().getCpf().equals(user.getCpf()))
+            logger.info(book.toString());
             throw new BookException(Messages.BOOK_NOT_FOUND);
         return book;
     }
