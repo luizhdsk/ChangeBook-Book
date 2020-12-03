@@ -38,6 +38,9 @@ public class BookService {
         return bookRepository.findAllByUser(user);
     }
 
+    public void updateBook(Book book){
+        bookRepository.save(book);
+    }
     public Book getBookById(String bookId, User user) {
         return bookRepository.findById(bookId).orElseThrow(() -> {throw new BookException(Messages.BOOK_NOT_FOUND);});
     }
