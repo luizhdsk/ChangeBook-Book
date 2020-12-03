@@ -1,5 +1,6 @@
 package com.projeto.changebookbooks.controller;
 
+import com.projeto.changebookbooks.config.exception.BookException;
 import com.projeto.changebookbooks.domain.Book;
 import com.projeto.changebookbooks.integration.user.client.UserClient;
 import com.projeto.changebookbooks.integration.user.response.User;
@@ -47,8 +48,11 @@ public class BookController {
     public void updateBook(
             @RequestBody @Valid Book book,
             @RequestHeader String Authorization){
-        userClient.validateToken(Authorization);
-        bookService.updateBook(book);
+        User user = userClient.getUserByToken(Authorization);
+        if (!user.getCpf().isEmpty())
+            bookService.updateBook(book);
+        else
+            throw new BookException("Usuário inválido.");
     }
 
     @GetMapping
