@@ -47,8 +47,7 @@ public class BookController {
     public void updateBook(
             @RequestBody @Valid Book book,
             @RequestHeader String Authorization){
-        String user = userClient.validateToken(Authorization);
-        logger.info(user);
+        userClient.validateToken(Authorization);
         bookService.updateBook(book);
     }
 
