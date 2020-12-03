@@ -45,7 +45,6 @@ public class BookController {
     @GetMapping
     public ResponseEntity<?> getBooks(@RequestHeader String Authorization){
         User user = userClient.getUserByToken(Authorization);
-        logger.info(user.toString());
         return ResponseEntity.ok().body(bookService.getBooks(user));
     }
 
@@ -54,8 +53,6 @@ public class BookController {
             @PathVariable("bookId") String bookId,
             @RequestHeader String Authorization){
         User user = userClient.getUserByToken(Authorization);
-        logger.info(user.toString());
-        logger.info(bookService.getBookById(bookId,user).toString());
         return ResponseEntity.ok().body(bookService.getBookById(bookId,user));
     }
 
